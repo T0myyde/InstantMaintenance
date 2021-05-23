@@ -1,0 +1,9 @@
+name: InstantMaintenance
+version: ${project.version}
+main: t0myy.ch.instantmaintenance.InstantMaintenance
+api-version: 1.16
+authors: [ T0myy ]
+description: its a Maintenance Plugin for your server
+commands:
+  maintenance:
+    description: for help /maintenance
