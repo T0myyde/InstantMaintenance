@@ -20,7 +20,7 @@ public class MessageFile {
             }
 
             try {
-                Messagecfg.set("Prefix", "&7[&6YourServer&7]");
+                Messagecfg.set("Prefix", "&7[&6YourServer&7] ");
                 Messagecfg.createSection("Message");
                 Messagecfg.set("Message.AddToWhitelist", "&7You have added &b%target% &7to the Whitelist");
                 Messagecfg.set("Message.RemoveFromWhitelist", "&7You have removed &b%target% &7from to the Whitelist");
@@ -29,6 +29,8 @@ public class MessageFile {
                 Messagecfg.set("Message.noPerm", "&cYou do not have the Permission for This Command");
                 Messagecfg.set("Message.PlayerDoesNotExists", "&cThis player doesent exists");
                 Messagecfg.set("Message.PlayerAlreadyOnWhitelist", "&7This player is alredy whitelisted");
+                Messagecfg.set("Message.WhitelistAlreadyOn", "&cthe Maintenance is Already on");
+                Messagecfg.set("Message.WhitelistAlreadyOff", "&cthe Maintenance is Already off");
                 Messagecfg.save(Messagefile);
             }catch (Exception e) {
                 e.printStackTrace();

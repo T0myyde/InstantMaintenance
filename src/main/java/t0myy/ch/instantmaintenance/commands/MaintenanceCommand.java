@@ -39,7 +39,7 @@ public class MaintenanceCommand implements CommandExecutor {
             } else {
                 if (args.length == 2) {
                     OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
-                    File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName() + ".yml");
+                    File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName());
                     if (args[0].equalsIgnoreCase("add")) {
 
                         if (!whitelistedPlayers.contains(player)) {
@@ -69,18 +69,27 @@ public class MaintenanceCommand implements CommandExecutor {
 
                     } else if (args[0].equalsIgnoreCase("toggleMaintenance")) {
                         if (args[1].equalsIgnoreCase("on")) {
-                            MaintenanceManager.setMaintenanceMode(player, true);
-                            player.sendMessage(ConfigManager.getConfigTextValue("Message.TurnOnWhitelist"));
+                            if (MaintenanceManager.getMaintenanceMode() == false) {
+                                MaintenanceManager.setMaintenanceMode(player, true);
+                                player.sendMessage(ConfigManager.getConfigTextValue("Message.TurnOnWhitelist"));
+                            } else {
+                                player.sendMessage(ConfigManager.getConfigTextValue("Message.WhitelistAlreadyOn"));
+                            }
+
+
                         } else if (args[1].equalsIgnoreCase("off")) {
-                            MaintenanceManager.setMaintenanceMode(player, false);
-                            player.sendMessage(ConfigManager.getConfigTextValue("Message.TurnOffWhitelist"));
+                            if (MaintenanceManager.getMaintenanceMode() == true) {
+                                MaintenanceManager.setMaintenanceMode(player, false);
+                                player.sendMessage(ConfigManager.getConfigTextValue("Message.TurnOffWhitelist"));
+                            } else {
+                                player.sendMessage(ConfigManager.getConfigTextValue("Message.WhitelistAlreadyOff"));
+                            }
                         }
                     }
                 } else if (args.length == 1) {
                     if (args[0].equalsIgnoreCase("list")) {
-
                         player.sendMessage("§7------ §bMaintenance §7------");
-                        player.sendMessage("§6Whitelisted Players:");
+                        player.sendMessage("§6Whitelisted: ");
                         MaintenanceManager.listWhitelisted(player);
                         player.sendMessage("§7------ §bMaintenance §7------");
                     }

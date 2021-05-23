@@ -23,8 +23,12 @@ public class MaintenanceManager {
        ConfigManager.saveCfg();
     }
 
+    public static boolean getMaintenanceMode() {
+        return cfg.getBoolean("ToggleMaintenance");
+    }
+
     public static void addPlayer(OfflinePlayer target, Player player) {
-        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName() + ".yml");
+        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName());
         YamlConfiguration playerCfg = YamlConfiguration.loadConfiguration(file);
 
         if (!file.exists()) {
@@ -48,7 +52,7 @@ public class MaintenanceManager {
         }
     }
     public static void removePlayer(Player player, OfflinePlayer target) {
-        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName() + ".yml");
+        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", target.getName());
         YamlConfiguration playerCfg = YamlConfiguration.loadConfiguration(file);
 
         if (file.exists()) {
@@ -60,7 +64,7 @@ public class MaintenanceManager {
 
     public static boolean checkPlayer(Player player) {
         boolean existPlayer = false;
-        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", player.getName() + ".yml");
+        File file = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/", player.getName());
         YamlConfiguration playerCfg = YamlConfiguration.loadConfiguration(file);
         if (file.exists()) {
             existPlayer = true;
