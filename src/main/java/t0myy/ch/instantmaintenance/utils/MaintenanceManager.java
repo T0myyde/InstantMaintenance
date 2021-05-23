@@ -6,7 +6,11 @@ import org.bukkit.entity.Player;
 import t0myy.ch.instantmaintenance.InstantMaintenance;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.Iterator;
 
 public class MaintenanceManager {
 
@@ -63,5 +67,16 @@ public class MaintenanceManager {
         }
 
         return existPlayer;
+    }
+
+    public static void listWhitelisted(Player player) {
+        File directory = new File(InstantMaintenance.getInstance().getDataFolder() + "//WhitelistedPlayers/");
+            File[] listOfFiles = directory.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    player.sendMessage("§7- " + listOfFiles[i].getName());
+                }
+            }
     }
 }

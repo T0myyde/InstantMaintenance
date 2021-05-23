@@ -34,6 +34,7 @@ public class MaintenanceCommand implements CommandExecutor {
                player.sendMessage("§7 - /maintenance add <PlayerName>");
                player.sendMessage("§7 - /maintenance remove <PlayerName>");
                player.sendMessage("§7 - /maintenance toggleMaintenance <on/off>");
+                player.sendMessage("§7 - /maintenance list");
                 player.sendMessage("§7------ §bMaintenance §7------");
             } else {
                 if (args.length == 2) {
@@ -74,6 +75,14 @@ public class MaintenanceCommand implements CommandExecutor {
                             MaintenanceManager.setMaintenanceMode(player, false);
                             player.sendMessage(ConfigManager.getConfigTextValue("Message.TurnOffWhitelist"));
                         }
+                    }
+                } else if (args.length == 1) {
+                    if (args[0].equalsIgnoreCase("list")) {
+
+                        player.sendMessage("§7------ §bMaintenance §7------");
+                        player.sendMessage("§6Whitelisted Players:");
+                        MaintenanceManager.listWhitelisted(player);
+                        player.sendMessage("§7------ §bMaintenance §7------");
                     }
                 }
 
